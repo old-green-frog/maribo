@@ -1,0 +1,6 @@
+.gradle
+.idea
+build
+README.md
+.env.template
+.dockerignore
