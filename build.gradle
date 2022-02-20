@@ -14,8 +14,10 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'me.paulschwarz:spring-dotenv:2.4.1'
+	runtimeOnly 'org.postgresql:postgresql'
 }
 
 tasks.named('test') {

@@ -1,27 +1,30 @@
 package com.networks.maribo;
 
-import com.networks.maribo.service.Greeting;
+import com.networks.maribo.service.migrations.Migrate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+import java.util.Objects;
 
 
 @SpringBootApplication
-@RestController
 public class Main {
 
-	private final String template = "Hello, %s!";
-	private long counter = 0;
+	private JdbcTemplate jdbcTemplate;
+
+	@Autowired
+	public Main(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
+		Migrate.run(jdbcTemplate);
+		LocalContext.runner = new JdbcTemplate(
+				Objects.requireNonNull(jdbcTemplate.getDataSource())
+		);
+	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(Main.class, args);
-	}
-
-	@GetMapping("/hello")
-	public Greeting hello(@RequestParam(value = "txt", defaultValue = "World") String name) {
-		return new Greeting(++counter, String.format(template, name));
 	}
 
 }
