@@ -6,13 +6,21 @@ public class Product {
     private int characteristic_id;
     private String name;
     private int price;
+    private int width;
+    private int height;
+    private int length;
+    private int weight;
 
-    public Product(int id, int category_id, int characteristic_id, String name, int price) {
+    public Product(int id, int category_id, int characteristic_id, String name, int price, int width, int height, int length, int weight) {
         this.id = id;
         this.category_id = category_id;
         this.characteristic_id = characteristic_id;
         this.name = name;
         this.price = price;
+        this.width = width;
+        this.height = height;
+        this.length = length;
+        this.weight = weight;
     }
 
     public int getId() {
@@ -49,5 +57,37 @@ public class Product {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public int getLength() {
+        return length;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
     }
 }
