@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS Product(
+    id SERIAL PRIMARY KEY,
+    order_id INTEGER REFERENCES MariboOrder(id) ON DELETE SET NULL,
+    name VARCHAR(100),
+    price DECIMAL(10, 2)
+)

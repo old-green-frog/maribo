@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS OrderStatus(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(20)
+);
+
+INSERT INTO OrderStatus(id, name) VALUES(1, 'Draft') ON CONFLICT DO NOTHING;
+INSERT INTO OrderStatus(id, name) VALUES(2, 'InProgress') ON CONFLICT DO NOTHING;
+INSERT INTO OrderStatus(id, name) VALUES(3, 'Done') ON CONFLICT DO NOTHING;

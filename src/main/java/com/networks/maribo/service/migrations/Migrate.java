@@ -11,7 +11,10 @@ public class Migrate {
     public static void run(JdbcTemplate runner) {
 
         // pathname depends on current run platform
-        File migrationFolder = new File("/app/build/resources/main/migrations");
+        String environ = LocalContext.env.getProperty("mariboenv", "local");
+        String pathname = environ.equals("local") ? "./build/resources/main/migrations" : "/app/build/resources/main/migrations";
+
+        File migrationFolder = new File(pathname);
         File[] sqls = migrationFolder.listFiles();
 
         assert sqls != null;
